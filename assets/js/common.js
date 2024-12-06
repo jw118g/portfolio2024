@@ -33,9 +33,10 @@ $(document).ready(function () {
         });
     });
 
+    let textSplit
     textSplit = new SplitType('.sc-home .content-wrap .home-text', {type: 'words'});
-    textSplitBtn = new SplitType('.btn-view span', {type: 'words'});
-    $('.word').wrap('<div class="word-wrap"></div>')
+    let textSplitBtn = new SplitType('.btn-view span', {type: 'words'});
+    $('.sc-home .content-wrap .home-text .word').wrap('<div class="word-wrap"></div>')
 
     const btnView = document.querySelectorAll('.btn-view');
     const delayStep = 0.05;
@@ -67,27 +68,57 @@ $(document).ready(function () {
         },
     },"<")
     
-    const HomeTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.sc-home', 
-            start: "top top",  
-            end: "bottom 30%",    
-            scrub: 1,
-            delay:1 
+    function homeTlFunc(){
+        const HomeTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.sc-home', 
+                start: "top top",  
+                end: "bottom 30%",    
+                scrub: 1,
+                delay:1,
+                //markers:true
 
-        },
-    });
-    HomeTl.to('.sc-home',{
-        '--opcity':0.8
-    })
-    HomeTl.to('.sc-home .content-wrap p .word',{
-        yPercent:100,
-        stagger: {
-            from: "random",
-            amount:1
+            },
+        });
+        HomeTl.to('.sc-home',{
+            '--opcity':0.8
+        })
+        HomeTl.to('.sc-home .content-wrap p .word',{
+            yPercent:100,
+            stagger: {
+                from: "random",
+                amount:1
+            }
+        },"<=+0.3")
+    }
+
+    homeTlFunc()
+
+    $(window).resize(function() {
+        // 기존 SplitType 인스턴스 리셋
+        if (textSplit) {
+            textSplit.revert();  // 기존 SplitType 인스턴스를 리셋
         }
-    },"<=+0.3")
     
+        // 새로 SplitType을 생성하여 텍스트를 분할
+        textSplit = new SplitType('.sc-home .content-wrap .home-text', {type: 'words'});
+        let textSplitBtn = new SplitType('.btn-view span', {type: 'words'});
+    
+        // .word 요소를 감싸는 div 생성
+        $('.sc-home .content-wrap .home-text .word').wrap('<div class="word-wrap"></div>');
+    
+        // GSAP 애니메이션 상태 초기화
+        gsap.set('.sc-home .content-wrap p .word', {
+            yPercent: 0,  // 초기 상태로 리셋
+            autoAlpha: 1  // 텍스트가 보이도록 설정
+        });
+
+        //스크롤애니메이션 실행 
+        homeTlFunc()
+        
+        // ScrollTrigger 새로 리프레시
+        ScrollTrigger.refresh();
+    });
 
     $('.right-area .desc-item').each(function (idx, el) {
         const workItems = $('.left-area li.work-item');
