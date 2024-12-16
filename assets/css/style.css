@@ -38,7 +38,6 @@
 .btn-view {
     position: relative;
     z-index: 10;
-    padding: 12px 26px;
     border-radius: 25px;
     border: 1px solid #ffffff58;
     letter-spacing: 1.2px;
@@ -47,6 +46,10 @@
     color: #fff;
     white-space: nowrap;
     font-family: "Manrope", sans-serif;
+}
+.btn-view a {
+    padding: 12px 26px;
+    display: block;
 }
 
 .word-wrap {
