@@ -401,6 +401,9 @@ footer .contact-link a:last-child img {
     }
     .btn-view {
         font-size: 1.4rem;
+        
+    }
+    .btn-view a {
         padding: 10px 20px;
     }
     section h2 {
