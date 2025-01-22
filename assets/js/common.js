@@ -94,6 +94,7 @@ $(document).ready(function () {
 
     homeTlFunc()
 
+
     $(window).resize(function() {
         // 기존 SplitType 인스턴스 리셋
         if (textSplit) {

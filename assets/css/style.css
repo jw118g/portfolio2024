@@ -187,12 +187,17 @@ section h2 {
     clip-path: inset(0 0 0 0);
     opacity: 1;
 }
-.sc-works .left-area li.work-item:last-child {
+.sc-works .left-area li.work-item.ssf {
     display: flex;
     align-items: center;
 }
-.sc-works .left-area li.work-item:last-child video {
+.sc-works .left-area li.work-item.ssf video {
     height: 110%;
+}
+
+
+.sc-works .left-area li.work-item.cherish img {
+    filter: brightness(0.72);
 }
 .sc-works .left-area video, 
 .sc-works .left-area img {
